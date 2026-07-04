@@ -39,13 +39,16 @@ document.addEventListener('DOMContentLoaded', function () {
     var nextBtn = carousel.querySelector('.carousel-btn.next');
     if (!track || !prevBtn || !nextBtn) return;
 
-    var total = track.querySelectorAll('img').length;
+    var images = Array.prototype.slice.call(track.querySelectorAll('img'));
+    var total = images.length;
     var current = 0;
     var timer;
 
     function goTo(index) {
+      var width = carousel.offsetWidth;
+      images.forEach(function (img) { img.style.width = width + 'px'; });
       current = (index + total) % total;
-      track.style.transform = 'translateX(-' + (current * carousel.offsetWidth) + 'px)';
+      track.style.transform = 'translateX(-' + (current * width) + 'px)';
     }
 
     function startAuto() {
@@ -61,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
     carousel.addEventListener('mouseleave', startAuto);
     window.addEventListener('resize', function () { goTo(current); });
 
+    goTo(0);
     startAuto();
   });
 

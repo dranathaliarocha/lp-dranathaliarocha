@@ -32,22 +32,36 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Carrossel da clínica
-  var track = document.querySelector('.carousel-track');
-  var prevBtn = document.querySelector('.carousel-btn.prev');
-  var nextBtn = document.querySelector('.carousel-btn.next');
-  if (track && prevBtn && nextBtn) {
-    var scrollAmount = function () {
-      var img = track.querySelector('img');
-      return img ? img.offsetWidth + 16 : 300;
-    };
-    prevBtn.addEventListener('click', function () {
-      track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
-    });
-    nextBtn.addEventListener('click', function () {
-      track.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
-    });
-  }
+  // Carrosseis (clínica e resultados)
+  document.querySelectorAll('.carousel').forEach(function (carousel) {
+    var track = carousel.querySelector('.carousel-track');
+    var prevBtn = carousel.querySelector('.carousel-btn.prev');
+    var nextBtn = carousel.querySelector('.carousel-btn.next');
+    if (!track || !prevBtn || !nextBtn) return;
+
+    var total = track.querySelectorAll('img').length;
+    var current = 0;
+    var timer;
+
+    function goTo(index) {
+      current = (index + total) % total;
+      track.style.transform = 'translateX(-' + (current * carousel.offsetWidth) + 'px)';
+    }
+
+    function startAuto() {
+      timer = setInterval(function () { goTo(current + 1); }, 3000);
+    }
+
+    function stopAuto() { clearInterval(timer); }
+
+    prevBtn.addEventListener('click', function () { stopAuto(); goTo(current - 1); startAuto(); });
+    nextBtn.addEventListener('click', function () { stopAuto(); goTo(current + 1); startAuto(); });
+    carousel.addEventListener('mouseenter', stopAuto);
+    carousel.addEventListener('mouseleave', startAuto);
+    window.addEventListener('resize', function () { goTo(current); });
+
+    startAuto();
+  });
 
   // Botão WhatsApp flutuante: aparece após 3s ou ao iniciar o scroll
   var waFloat = document.getElementById('whatsappFloat');

@@ -45,10 +45,9 @@ document.addEventListener('DOMContentLoaded', function () {
     var timer;
 
     function goTo(index) {
-      var width = carousel.offsetWidth;
-      images.forEach(function (img) { img.style.width = width + 'px'; });
+      images[current].classList.remove('ativo');
       current = (index + total) % total;
-      track.style.transform = 'translateX(-' + (current * width) + 'px)';
+      images[current].classList.add('ativo');
     }
 
     function startAuto() {
@@ -62,9 +61,8 @@ document.addEventListener('DOMContentLoaded', function () {
     nextBtn.addEventListener('click', function () { stopAuto(); goTo(current + 1); startAuto(); });
     carousel.addEventListener('mouseenter', stopAuto);
     carousel.addEventListener('mouseleave', startAuto);
-    window.addEventListener('resize', function () { goTo(current); });
 
-    goTo(0);
+    images[0].classList.add('ativo');
     startAuto();
   });
 

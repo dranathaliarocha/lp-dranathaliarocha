@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function startAuto() {
+      clearInterval(timer);
       timer = setInterval(function () { goTo(current + 1); }, 3000);
     }
 

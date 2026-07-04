@@ -188,8 +188,6 @@ blockquote {
   will-change: transform;
 }
 .carousel-track img {
-  min-width: 100%;
-  width: 100%;
   flex-shrink: 0;
   height: 480px;
   object-fit: contain;

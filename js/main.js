@@ -80,4 +80,16 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(mostrar, 3000);
   }
 
+  // Eventos de conversão (GA4)
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest && e.target.closest('a[href]');
+    if (!link || typeof gtag !== 'function') return;
+    var href = link.getAttribute('href') || '';
+    if (href.indexOf('wa.me') !== -1 || href.indexOf('whatsapp') !== -1) {
+      gtag('event', 'contato_whatsapp', { link_url: href });
+    } else if (href.indexOf('agd.to') !== -1) {
+      gtag('event', 'agendar_consulta', { link_url: href });
+    }
+  });
+
 });

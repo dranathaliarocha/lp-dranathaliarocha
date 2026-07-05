@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dranathaliarocha.github.io/lp-dranathaliarocha/sitemap.xml

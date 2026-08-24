@@ -394,9 +394,9 @@ blockquote {
 .footer-logo-img { display: inline-block; margin: 0 auto 24px; height: 180px; width: auto; max-width: 88%; }
 .footer-inner p { font-size: .85rem; opacity: .85; margin-bottom: 6px; }
 .footer-copy { margin-top: 16px; opacity: .6; }
-.footer-dev-credit { display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(236,225,207,.2); font-size: .8rem; color: var(--creme); opacity: .85; text-decoration: none; transition: opacity .2s; }
+.footer-dev-credit { display: inline-flex; align-items: center; gap: 14px; margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(236,225,207,.2); font-size: 1rem; color: var(--creme); opacity: .9; text-decoration: none; transition: opacity .2s; }
 .footer-dev-credit:hover { opacity: 1; }
-.footer-dev-logo { height: 22px; width: auto; }
+.footer-dev-logo { height: 48px; width: auto; }
 
 /* ===== WhatsApp flutuante ===== */
 .whatsapp-float {
